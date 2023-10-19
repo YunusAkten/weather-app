@@ -5,6 +5,8 @@ function Weather() {
 	const { selectedCity } = useContext(CityContext);
 	const [coord, setCoord] = useState({});
 	const [weeklyWeather, setWeeklyWeather] = useState([]);
+	const dayNames = ['Pazar', 'Pazartesi', 'Salı', 'Carsamba', 'Persembe', 'Cuma', 'Cumartesi'];
+	
 	useEffect(() => {
 		axios
 			.get(
@@ -24,24 +26,31 @@ function Weather() {
 			)
 			.then((response) => {
 				setWeeklyWeather(response.data.daily);
+				
 			})
 			.catch((err) => {
 				console.log(err.message);
 			});
 	}, [coord]);
 	return (
-		<div className="row justify-content-center">
+		<div className=" mt-4 weatherList row 	 ">
 			{weeklyWeather &&
 				weeklyWeather.map((day, index) => {
+					const date = new Date(day.dt * 1000);
+	const dayName = dayNames[date.getDay()];
 					const imgUrl =
 						"http://openweathermap.org/img/wn/" + day.weather[0].icon + ".png";
 					return (
-						<div className="col-1" key={index}>
-							<img className="weatherIcon" src={imgUrl} alt="" />
-							<p>
-								{Math.round(day.temp.max)} / {Math.round(day.temp.min)}
-							</p>
-							<p>{day.weather[0].description}</p>
+						<div className="row weatherCard col-xs-4 col-md-3 col-lg pt-2 px-1 text-center justify-content-center" key={index}>
+							<p className="my-0" >{dayName}
+									</p>
+							<img className="my-0  weatherIcon" src={imgUrl} alt="" />
+								
+									<p className="" >
+									{Math.round(day.temp.max)} / {Math.round(day.temp.min)}
+
+									</p>
+							
 						</div>
 					);
 				})}

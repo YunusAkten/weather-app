@@ -4,6 +4,7 @@ import axios from "axios";
 import SelectCity from "./components/selectCity";
 import { CityContextProvider } from "./context/cityContext";
 import Weather from "./components/weather";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function App() {
 	const [cities, setCities] = useState([]);
 	useEffect(() => {
@@ -17,11 +18,19 @@ function App() {
 	}, []);
 	return (
 		<CityContextProvider>
-			<div className="App container">
-				<h1>Weather app</h1>
+			<>
+			<header className="pt-2 ps-2 ">
+				<h1 className="display   " >Weather app
+				<i  className="ms-2 mt-2 text-center fa-solid bolt-icon fa-bolt"></i>	
+				</h1>
+							</header>
+				<section className="App container  ">
+				
 				<SelectCity cities={cities} />
 				<Weather></Weather>
-			</div>
+			</section>
+			</>
+			
 		</CityContextProvider>
 	);
 }

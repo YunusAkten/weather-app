@@ -6,13 +6,13 @@ function SelectCity({ cities }) {
 		return cities.map((city) => {
 			if (city.city === "İstanbul") {
 				return (
-					<option selected key={city.count} value={city.city}>
+					<option  selected key={city.count} value={city.city}>
 						{city.city}
 					</option>
 				);
 			} else {
 				return (
-					<option key={city.count} value={city.city}>
+					<option  key={city.count} value={city.city}>
 						{city.city}
 					</option>
 				);
@@ -26,7 +26,7 @@ function SelectCity({ cities }) {
 			}}
 			name="Cities"
 			id="cities"
-			className="form-select"
+			className="form-select form-select-lg mb-3  "
 		>
 			{renderDropDown()}
 		</select>
